@@ -2,9 +2,9 @@ const { Model, DataTypes } = require('sequelize');
 
 const sequlize =require('../config/connections');
 
-class users extends Model {}
+class orders extends Model {}
 
-users.init(
+orders.init(
     {
       id: {
         type: DataTypes.INTEGER,
@@ -16,6 +16,11 @@ users.init(
         type: DataTypes.STRING,
         allowNull: false,
       },
+      orderNumber: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        autoIncriment: true,
+      },
       address: {
         type: DataTypes.TEXT,
         allowNull: false,
@@ -23,11 +28,11 @@ users.init(
     },
       {
         sequelize,
-        timestamps: false,
+        timestamps: true,
         freezeTableName: false,
         underscored: false,
-        modelName: 'users',
+        modelName: 'orders',
       }  
 );
 
-module.exports = users;
+module.exports = order;
