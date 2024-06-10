@@ -1,0 +1,12 @@
+{{#extend "main"}}
+  {{#content "body"}}
+    <h1>Welcome, {{user.username}}</h1>
+    <h2>Your Orders</h2>
+    <ul>
+      {{#each orders}}
+        <li>Order ID: {{this.id}}, Status: {{this.status}}, Service: {{this.service_type}}</li>
+      {{/each}}
+    </ul>
+    <a href="/order/new">Create New Order</a>
+  {{/content}}
+{{/extend}}
