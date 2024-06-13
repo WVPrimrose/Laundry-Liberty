@@ -17,3 +17,18 @@ h2 {
 p {
     font-size: 20px;
 }
+
+ul li {
+    list-style-type: none;
+}
+
+form label {
+    padding: 30px;
+    width: 150px;
+}
+
+form input {
+    font-size: 15px;
+    padding: 30px;
+    width: 150px;
+}
