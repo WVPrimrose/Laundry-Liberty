@@ -1,29 +1,29 @@
 const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection'); 
 
-const sequlize =require('../config/connections');
+class Provider extends Model {}
 
-class orders extends Model {}
-
-orders.init(
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        autoIncriment: true,
-        primaryKey: true,
-      },
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+Provider.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
     },
-      {
-        sequelize,
-        timestamps: false,
-        freezeTableName: false,
-        underscored: false,
-        modelName: 'providers',
-      }  
+    // Add other fields here
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'provider',
+  }
 );
 
-module.exports = orders;
+module.exports = Provider;

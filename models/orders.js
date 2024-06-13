@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection'); 
+const sequelize = require('../config/connection');
+
 class Order extends Model {}
 
 Order.init(
@@ -7,8 +8,12 @@ Order.init(
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      autoIncrement: true,
       primaryKey: true,
+      autoIncrement: true,
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     date_created: {
       type: DataTypes.DATE,
@@ -21,22 +26,6 @@ Order.init(
         model: 'user',
         key: 'id',
       },
-    },
-    description: {
-      type: DataTypes.STRING,
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    orderNumber: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      autoIncrement: true,
-    },
-    address: {
-      type: DataTypes.TEXT,
-      allowNull: false,
     },
   },
   {
