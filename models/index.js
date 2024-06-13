@@ -1,19 +1,24 @@
-// import models
-const Orders = require('.orders.js');
-const Providers = require('.providers.js');
-const Users = require('.user.js');
+const User = require('./user');
+const Order = require('./orders');
+const Provider = require('./providers'); 
 
-Users.hasMany(Orders, {
+User.hasMany(Order, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+});
+
+Order.belongsTo(User, {
+    foreignKey: 'user_id'
+});
+
+
+User.hasMany(Order, {
     foreignKey: 'id',
-    onDelete: 'CASCADE',
+    onDelete: 'CASCADE'
 });
 
-Orders.belongsTo(Users, {
-    foreignKey: 'orderNumber'
+Order.belongsTo(User, {
+    foreignKey: 'user_id'
 });
 
-module.exporets = {
-    Orders,
-    Providers,
-    Users,
-};
+module.exports = { User, Order, Provider }; 
