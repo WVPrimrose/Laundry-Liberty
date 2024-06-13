@@ -1,0 +1,27 @@
+{{#extend "main"}}
+  {{#content "body"}}
+    <h1>Welcome, {{user.username}}</h1>
+    <h2>Available Tasks</h2>
+    <ul>
+      {{#each tasks}}
+        <li>
+          Order ID: {{this.id}}, Service: {{this.service_type}}
+          <button onclick="pickTask({{this.id}})">Pick Task</button>
+        </li>
+      {{/each}}
+    </ul>
+  {{/content}}
+{{/extend}}
+
+<script>
+  function pickTask(orderId) {
+    axios.put(`/api/orders/pick/${orderId}`)
+      .then(response => {
+        alert('Task picked successfully!');
+        window.location.reload();
+      })
+      .catch(error => {
+        console.error('There was an error picking the task!', error);
+      });
+  }
+</script>
