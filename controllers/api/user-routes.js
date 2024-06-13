@@ -1,15 +1,13 @@
 const router = require('express').Router();
-const { reset } = require('continuation-local-storage');  
 const { User } = require('../../models');
 
+// Route to create a new user
 router.post('/', async (req, res) => {
     try {
         const userData = await User.create(req.body);
-
         req.session.save(() => {
             req.session.user_id = userData.id;
             req.session.logged_in = true;
-
             res.status(200).json(userData);
         });
     } catch (err) {
@@ -17,6 +15,7 @@ router.post('/', async (req, res) => {
     }
 });
 
+// Route to log in a user
 router.post('/login', async (req, res) => {
     try {
         const userData = await User.findOne({ where: { email: req.body.email } });
@@ -36,7 +35,6 @@ router.post('/login', async (req, res) => {
         req.session.save(() => {
             req.session.user_id = userData.id;
             req.session.logged_in = true;
-
             res.json({ user: userData, message: 'You are now logged in!' });
         });
     } catch (err) {
@@ -44,6 +42,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
+// Route to log out a user
 router.post('/logout', (req, res) => {
     if (req.session.logged_in) {
         req.session.destroy(() => {
