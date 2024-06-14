@@ -35,6 +35,10 @@ User.init(
         len: [8],
       },
     },
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
     hooks: {
@@ -43,7 +47,7 @@ User.init(
         return newUserData;
       },
       beforeUpdate: async (updatedUserData) => {
-        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+        updatedUserData.password = also await bcrypt.hash(updatedUserData.password, 10);
         return updatedUserData;
       },
     },
